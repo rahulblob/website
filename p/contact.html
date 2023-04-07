@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no">
+  <title>Contact - Rahul Lodhi</title>
+  <link href="https://rahul.eu.org/src/style.css" rel="stylesheet" type="text/css" />
+  <style>
+    body{
+  font-family:var(--fontBody) !important;
+}
+.cnt{
+  margin-top:160px !important;
+  margin-bottom:140px !important;
+}
+.lbl{
+  /*margin-top:100px !important;*/
+  margin-bottom:-15px !important;
+  color:var(--coreT-prim);
+  font-size:90%;
+}
+.lbl a{
+  color:var(--coreT-dim);
+}
+h1,h2,h3,h4,h5,h6,h7,h8{
+  font-weight:bold !important;
+}
+.bg1{
+  margin-left:9px !important;
+}
+p{
+  color:var(--coreT-dim) !important;
+  font-size:90%;
+}
+textarea{
+  resize:none;
+}
+::placeholder{
+  color:var(--coreT-dim) !important;
+}
+.form{
+  font-family:var(--fontHead) !important;
+ /* padding:10px;*/
+  max-width:440px;
+  margin-top:28px;
+}
+.form div{
+  display:flex;
+}
+.form input,.form textarea{
+  border-radius:7px !important;
+  font-size:15px !important;
+  color:var(--coreT-dim);
+  margin:5px;
+  padding:12px 17px !important;
+  width:100% !important;
+  border:1px solid var(--coreT-dim);
+  background:var(--coreBg);
+}
+.form textarea:focus,.form input:focus{
+  border:1px solid var(--coreT-prim);
+  outline:0;
+  color:var(--coreT-prim) !important;
+}
+.form .btn{
+  padding:10px 17px;
+  font-size:15px !important;
+  margin:5px;
+}
+.form textarea{
+  height:120px;
+}
+  </style>
+</head>
+<body>
+    <!--[ header ]-->
+  <header class='hdr'>
+     <h2 class='hdrL'>R.</h2>
+        <ul class='hdrT'>
+          <input type='checkbox' id='navc'/>
+          <li class='tgl'>
+           <a href='#' class='shr'>Share</a>
+           <a href='#projects'>Projects</a>
+        </li>
+          <li><a class='btn li' href='https://rahul.eu.org'>Go Back</a></li>
+          <li class='tglA'>
+            <label for='navc'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+  <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+</svg></label>
+          </li>
+        </ul>
+  </header>
+  
+  <div class="cnt">
+    <div class="lbl"><a href="https://rahul.eu.org" target="_blank">home</a> / contact</div>
+    <h1>Contact <span  class="bg1">Us</span></h1>
+    <p>Have anything interesting? fill out the contact form below and we'll get back to you as soon as possible. </p>
+      <div class="form">
+     <div>
+     <input class="name" type="text" placeholder="Peter Parker" required/>
+      <input class="email" type="email" placeholder="peter@mail.com" required/>
+      </div>
+        <div>
+      <textarea placeholder="hello i need..." class="message" required></textarea>
+        </div>
+      <button type="submit" class="btn bg submit">submit</button>
+  </div>
+  </div>
+
+  <!--[ footer ]-->
+  <div class='footer'>
+    <div class='ftr'>
+      <p>© Copyright 2023 <br/> Created By <a href='#' class='external'>Rahul Lodhi</a></p>
+      <a href='#'>Terms</a>
+      <span>•</span>
+      <a href='#'>Privacy</a>
+    </div>
+  </div>
+  <div class="tstN"></div>
+  <script>
+    const name = document.querySelector(".name"),
+email = document.querySelector(".email"),
+message = document.querySelector(".message"),
+btn = document.querySelector(".submit");
+
+const toast = (e) => {
+  document.querySelector(".tstN").innerHTML = `<span>${e}</span>`;
+};
+btn.addEventListener("click",(e)=>{
+  e.preventDefault();
+if(!email.value.toString().includes('@') || !email.value.toString().includes('.')){
+    toast("invalid email!");
+  }
+  else{
+    toast(`redirecting...`);
+    window.location.href ="mailto:admin@rahul.eu.org";
+    setTimeout(()=>{
+      toast(`redirecting...`);
+      window.location.href ="https://rahul.eu.org";
+    },1000);
+  }
+});
+
+window.scrollTo(0,-9999);
+  </script>
+</body>
+</html>
