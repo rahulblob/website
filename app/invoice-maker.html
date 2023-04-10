@@ -4,7 +4,329 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Invoice Maker</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <style>
+  :root{
+  --bg:#fffdfc;
+  --text:#1e1e1e;
+  --border:#242424;
+}
+*{
+  margin:0;
+  padding:0;
+}
+html{
+  scroll-behavior:smooth;
+  font-family:sans-serif;
+}
+body{
+  background:var(--bg);
+  display:grid;
+  place-items:center;
+}
+::-webkit-scrollbar{
+  display:none
+}
+.main{
+/*   margin-bottom:70px; */
+  padding:20px;
+/*   margin-top:70px; */
+}
+.prv{
+  z-index:-1;
+  position:absolute;
+}
+.invoice{
+  display:flex;
+  gap:0;
+  padding:0;
+  margin:0;
+}
+.prv{
+  display:grid;
+  position:relative;
+}
+.invoice .invSeller{
+  border:1px solid var(--border);
+  border-right:none;
+  border-radius:3px 0 0 0;
+}
+.invBuyer{
+  margin-top:30px;
+  padding:7px;
+  border-top:1px solid var(--border);
+}
+.buyerAdress{
+  margin-bottom:5px;
+}
+.dtls{
+  margin-left:20px;
+}
+.invAdress{
+  padding:7px;
+}
+.buyText{
+  margin-bottom:5px;
+  margin-top:3px;
+}
+h1{
+  font-size:100%;
+  color:var(--text);
+  margin-bottom:5px;
+}
+p{
+  color:var(--text);
+  font-size:90%;
+  opacity:.9;
+}
+.invSubDetails{
+  display:flex;
+}
+.rd-top{
+  border-radius:0 3px 0 0;
+}
+.rd-bottom{
+  border-radius:0 0 3px 0;
+}
+.invSubDetails div{
+  display:grid;
+}
+.invSubDetails span{
+  height:45px;
+  width:100%;
+  border:1px solid var(--border);
+  padding:3px;
+  font-size:95%;
+}
+.nobd-right{
+  border-right:none !important;
+}
+.nobd-bottom{
+  border-bottom:none !important;
+}
+.invTerms{
+  height:70px;
+  width:100%;
+  padding:3px;
+  border:1px solid var(--border);
+}
+.invItems .invTableHead{
+  display:flex;
+}
+.invItems .invTableHead span{
+/*   width:100%; */
+  height:50px;
+  padding:5px 4px;
+  border:1px solid var(--border);
+  text-align:center;
+}
+.nobd-top{
+  border-top:none !important;
+}
+.invSi,.invP,.no,.per{
+  width:30px !important;
+}
+.invAm,.amount{
+  width:69.5px !important;
+}
+.per h1,.amount h1,.name h1{
+  position:absolute;
+  margin-top:70px;
+}
+.name h1{
+  margin-top:312px;
+  margin-left:160px;
+}
+.invName,.name{
+  width:250px !important;
+}
+.invQu,.quantity{
+  width:80px !important;
+}
+.invRa,.rate{
+  width:85px !important;
+}
+.invItems{
+  display:grid;
+}
+.gst{
+  width:71px;
+}
+.invTableDetails{
+  display:flex;
+}
+.hsn{
+  width:71px;
+}
+p{
+  font-weight:400 !important;
+}
+.invTableDetails span{
+  border:1px solid var(--border);
+  border-top:none;
+  height:400px;
+  padding:5px 4px;
+}
+.total{
+  display:flex;
+  border:1px solid var(--border);
+  border-top:none;
+}
+.bold{
+  font-weight:bold
+}
+.total span{
+  border:1px solid var(--border);
+  border-top:none;
+  border-bottom:none;
+  padding:5px 4px;
+}
+.nobd-left{
+  border-left:none !important;
+}
+.float-right{
+  text-align:right !important;
+}
+.inw{
+  height:50px;
+  border:1px solid var(--border);
+  border-top:none;
+  padding:5px 4px;
+}
+.inw .float-right{
+  position:absolute;
+  right:8px;
+}
+.underline{
+  text-decoration:underline;
+}
+.invDec{
+  display:flex;
+  border:1px solid var(--border);
+  border-top:none;
+  border-radius:0 0 3px 3px;
+  height:100px;
+}
+.invDec span{
+  padding:5px 4px;
+  width:100%;
+}
+.invDec span p{
+  text-align:right;
+  margin-top:55px;
+}
+.invF{
+  border-right:1px solid var(--border);
+}
+.invC1{
+  display:flex;
+  border:1px solid var(--border);
+  border-top:none;
+}
+.invC1 span{
+  border:1px solid var(--border);
+  border-top:none;
+  border-left:none;
+  border-bottom:none;
+  height:20px;
+}
+.bk{
+  width:85px;
+}
+.tota{
+  text-align:right;
+  width:200px;
+}
+.right{
+  text-align:left !important;
+}
+.invTax{
+  display:flex;
+  border:1px solid var(--border);
+  border-top:none;
+}
+.invTax span{
+  border:1px solid var(--border);
+  border-top:none;
+  border-left:none;
+  border-bottom:none;
+  text-align:center;
+  display:grid;
+  place-items:center;
+}
+.tHsc{
+  width:200px;
+  height:50px;
+}
+.tVal{
+  width:85px;
+}
+.tCt{
+  width:171px;
+}
+.tSt{
+  width:171px;
+}
+.tTt{
+  heigth:100px !important;
+}
+.form0{
+  display:grid;
+  place-items:center;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  width:100%;
+  height:100%;
+  background:var(--bg);
+}
+#aaRate{
+  width:100%;
+}
+input{
+  padding:12px 17px;
+  border:1px solid var(--border);
+  border-radius:3px;
+  font-size:16px;
+  margin:5px;
+  transition:border-radius .2s;
+}
+::placeholder{
+  opacity:.7;
+  color:var(--text);
+}
+input:focus{
+  border-radius:10px;
+  outline:0;
+}
+.flex{
+  display:flex;
+}
+button{
+  border-radius:3px;
+  border:none;
+  background:#4121e4;
+  color:var(--bg);
+  padding:15px;
+  width:100%;
+  font-size:16px;
+  margin-top:15px;
+  transition:all .2s;
+}
+button:hover,button:focus{
+ border-radius:10px;
+}
+
+/* .invSeller{
+  width:100%;
+}
+.invSubDetails{
+  width:100%
+} */
+.invBuyer{
+  width:383.5px;
+}
+  </style>
 </head>
 <body>
 
@@ -167,6 +489,57 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="script.js"></script>
+  <script>
+  const invoice = document.querySelector(".mainInvoice");
+const date = new Date();
+const currTime = `${date.getHours()}${date.getMinutes()}`;
+const saveImage = () => {
+ domtoimage.toPng(invoice)
+  .then((dataUrl)=>{
+    const imgInvoice = document.createElement('a');
+    imgInvoice.href = dataUrl;
+    imgInvoice.setAttribute('download',`Invoice${currTime}.png`);
+    document.body.appendChild(imgInvoice);
+    imgInvoice.click();
+    imgInvoice.remove();
+  })
+  .catch((err)=>{
+    console.log(err);
+  })
+};
+const changeText = (t,e) => {
+  if(document.querySelector(`#${t}`).value != ''){
+    document.querySelector(`#${e}`).innerHTML = document.querySelector(`#${t}`).value;
+  };
+};
+
+const button = document.querySelector("button");
+button.addEventListener('click',()=>{
+  changeText('iNumber','invoiceNumber');
+  changeText('iDate','date');
+  changeText('iDelevry','deleveryNote');
+  changeText('iName','buyerName');
+  changeText('iAddress','buyerAdress');
+  changeText('iGST','buyerGST');
+  changeText('iState','buyerState');
+  changeText('iVehicle','vehicleNumber');
+  changeText('iItemName','itemName');
+  changeText('iItemQuantity','itemQuantity');
+  changeText('iItemTotal','itemQuantity2');
+  changeText('iHsn','invoiceNumber');
+  changeText('iAmount','itemAmount');
+  changeText('iAmountTotal','totalamount');
+  changeText('cgstA','aCgst');
+  changeText('sgstA','aSgst');
+  changeText('aaRate','rateA');
+  changeText('cgstA','aCgst');
+  changeText('sgstA','aSgst');
+  changeText('cgstA','cgst01');
+  changeText('sgstA','sgst01');
+  changeText('aaGsts','ttl');
+  
+  saveImage();
+});
+  </script>
 </body>
 </html>
