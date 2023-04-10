@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Invoice Maker</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+  <!--[ user input ]-->
+   <div class='main form0'>
+     <div class='form'>
+       <div class='flex'>
+       <input type='text' id='iNumber' placeholder='Invoice Number'/><br/>
+       <input type='text' id='iDate' placeholder='Invoice Date'/><br/>
+       </div>
+       <div class='flex'>
+       <input type='text' id='iDelevry' placeholder='Delevery Note'/><br/>
+       <input type='text' id='iName' placeholder='Buyer Name'/><br/>
+       </div>
+       <div class='flex'>
+       <input type='text' id='iAddress' placeholder='Buyer Address'/><br/>
+       <input type='text' id='iGST' placeholder='Buyer GST'/><br/>
+       </div>
+       <div class='flex'>
+       <input type='text' id='iState' placeholder='Buyer State'/><br/>
+       <input type='text' id='iVehicle' placeholder='Vehicle Number'/><br/>
+       </div>
+       <div class='flex'>
+       <input type='text' id='iItemName' placeholder='Item Name'/><br/>
+       <input type='text' id='iItemQuantity' placeholder='Item Quantity'/><br/>
+       </div>
+       <div class='flex'>
+       <input type='text' id='iItemTotal' placeholder='Item Quantity Total'/><br/>
+       <input type='text' id='iHsn' placeholder='HSN/SAC'/><br/>
+       </div>
+       <div class='flex'>
+       <input type='text' id='aaRate' placeholder='Rate'/><br/>
+       <input type='text' id='aaGsts' placeholder='Total Gst'/><br/>
+       </div>
+       <div class='flex'>
+       <input type='text' id='iAmount' placeholder='Amount'/><br/>
+       <input type='text' id='iAmountTotal' placeholder='Total Amount'/><br/>
+       </div>
+       <div class='flex'>
+       <input type='text' id='cgstA' placeholder='CGST Amount'/><br/>
+       <input type='text' id='sgstA' placeholder='SGST Amount'/><br/>
+       </div>
+       <div class='flex'>
+       <button>Save & Download</button>
+       </div>
+     </div>
+   </div>
+  
+  <!--[ invoice ]-->
+  <div class='mainInvoice'>
+   <div class='main'>
+     <div class='prv'>
+      <div class='invoice'>
+        <div class='invSeller'>
+          <div class='invAdress'>
+            <h1>S.A ENTERPRISES</h1>
+            <p>Factory: Ruby Steel Dhansar Gaon <br/> GSTIN/UIN: 27AELF53790Q1ZZ <br/> State Name: Maharastra, Code: 27 <br/> E-Mail: </p>
+          </div>
+          <div class='invBuyer'>
+            <p class='buyText'>Buyer</p>
+            <h1 class='buyerName' id='buyerName'>Bright Metalizing Coating</h1>
+            <p class='buyerAdress' id='buyerAdress'>Sohrab Compound Rathodi Village Marva Road Malad West <br/> Mumbai-400095</p>
+            <div class='buyerDetails'>
+              <p>GSTIN/UIN      :<span class='dtls buyerGst' id='buyerGST'>ASJSBDGGW452EB2</span><br/>
+                 StateName      :<span class='dtls buyerState' id='buyerState'>Maharastra, Code: 27</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class='invDetails'>
+          <div class='invSubDetails'>
+            <div>
+              <span class='nobd-right nobd-bottom'>Invoice No. <br/><h1 id='invoiceNumber'>01</h1></span>
+              <span class='nobd-right nobd-bottom'>Delevery Note.<br/><h1 id='deleveryNote'>01</h1></span>
+              <span class='nobd-right nobd-bottom'>Buyer's Order No.</span>
+              <span class='nobd-right nobd-bottom'>Despatch Document No.</span>
+              <span class='nobd-right nobd-bottom'>Despatched Through</span>
+              <span class='nobd-right nobd-bottom'>Bill of Lading/LR.RR No.</span>
+            </div>
+            <div>
+              <span class='nobd-bottom rd-top'>Dated<br/><h1 id='date'>07-04-2023</h1></span>
+              <span class='nobd-bottom'>Mode/Terms of Payments</span>
+              <span class='nobd-bottom'>Dated</span>
+              <span class='nobd-bottom'>Delivery Note Date.</span>
+              <span class='nobd-bottom'>Destination</span>
+              <span class='nobd-bottom'>Motor Vehicle No. <br/><bold class='bold' id='vehicleNumber'>MH-01-DR-4267</bold></span>
+            </div>
+          </div>
+          <div class='invTerms'>
+            Terms of Delivery
+          </div>
+        </div>
+      </div>
+        <div class='invItems'>
+          <div class='invTableHead'>
+              <span class='nobd-top nobd-right invSi'>SI No.</span>
+              <span class='nobd-top nobd-right invName'>Description of Goods</span>
+              <span class='nobd-top nobd-right invHs'>HSN/SAC</span>
+              <span class='nobd-top nobd-right invGst'>GST Rate</span>
+              <span class='nobd-top nobd-right invQu'>Quantity</span>
+              <span class='nobd-top nobd-right invRa'>Rate</span>
+              <span class='nobd-top nobd-right invP'>per</span>
+              <span class='nobd-top invAm'>Amount</span>
+          </div>
+          <div class='nobd-right invTableDetails'>
+            <span class='nobd-right no'>1</span>
+            <span class='nobd-right name bold'><bold class='bold' id='itemName'>Varnish</bold><br/><p id='itemQuantity'>3 Barrel X 200 Ltrs</p><br/><h1 id='cgst'>CGST @9</h1><br/><h1 id='sgst'>SGST @9%</h1></span>
+            <span class='nobd-right hsn'>3208</span>
+            <span class='nobd-right gst' id='gst'>18%</span>
+            <span class='nobd-right quantity bold' id='itemQuantity2'>600 Ltrs</span>
+            <span class='nobd-right rate' id='rateA'>70.00</span>
+            <span class='nobd-right per'>Kgs <br/><h1>9%</h1><br/><h1>9%</h1></span>
+            <span class='amount bold'><bold id='itemAmount'>42,000</bold><br/><h1 id='aCgst'>3,780</h1><br/><h1 id='aSgst'>3,780</h1></span>
+          </div>
+          <div class='total'>
+            <span class='nobd-right no nobd-left'> </span>
+            <span class='nobd-right name float-right'>Total</span>
+            <span class='nobd-right hsn'></span>
+            <span class='nobd-right gst'></span>
+            <span class='nobd-right quantity'></span>
+            <span class='nobd-right rate'></span>
+            <span class='nobd-right per'></span>
+            <span class='amount nobd-right bold' id='totalamount'>49,560</span>
+          </div>
+          <div class='inw'>
+            Amount Chargeable (inwords) <span class='float-right'>E &O.Er</span>
+          </div>
+          <div class='invTax'>
+            <span class='tHsc'>HSN/SAC</span>
+            <span class='tVal'>Taxable Value</span>
+            <span class='tCt'>Central Tax</span>
+            <span class='tSt'>State Tax</span>
+            <span class='tTt nobd-right'>Total Amount</span>
+          </div>
+          <div class='invC1'>
+            <span class='tota right' id='hsn'>32081030</span>
+            <span class='bk'></span>
+            <span class='bk'>9%</span>
+            <span class='bk' id='cgst01'>3,780</span>
+            <span class='bk'>9%</span>
+            <span class='bk' id='sgst01'>3,780</span>
+            <span class='nobd-right bk' id='ttl'>7,400</span>
+          </div>
+          <div class='invC1'>
+            <span class='tota'>Tota</span>
+            <span class='bk'></span>
+            <span class='bk'></span>
+            <span class='bk'></span>
+            <span class='bk'></span>
+            <span class='bk'></span>
+            <span class='nobd-right bk'></span>
+          </div>
+          <div class='invDec'>
+            <span class='invF'><bold class='underline'>Declaration</bold><br/><br/>We declare that this invoice shows the <br/> actual price of the goods described and that all <br/> particulars are true and correct.</span>
+            <span><bold class='bold f-1'>for SA ENTERPRISES</bold><br/><p>Authorized signature</p></span>
+          </div>
+        </div>
+     </div>
+   </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
