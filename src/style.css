@@ -498,11 +498,12 @@ a:hover{
     margin-top:0px;
   }
   .tstN span{
-    font-size:14px;
+    font-size:16px;
     margin-bottom:0px;
     left:0px;
     right:0px;
     border-radius:0px;
+    padding:12px;
     }
   a{
     cursor:context-menu;
