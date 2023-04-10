@@ -7,8 +7,7 @@ shareBtn.addEventListener('click',(e)=>{
   e.preventDefault();
   const shareData = {
     title:title.textContent,
-    url:url,
-    text:title.textContent
+    url:url
   };
   navigator.share(shareData);
 });
