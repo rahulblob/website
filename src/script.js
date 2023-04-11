@@ -1,3 +1,4 @@
+(function(){
 const uri = window.location.toString();if (uri.indexOf("?m=1","?m=1") > 0) {var clean_uri = uri.substring(0, uri.indexOf("?m=1"));window.history.replaceState({}, document.title, clean_uri); }; 
 const shareBtn = document.querySelector('.shr');
 const title = document.querySelector('title');
@@ -29,3 +30,8 @@ document.querySelector('.err').addEventListener('click',()=>{
   toast('not for you!')
 });
 window.scrollTo(-99999,0); 
+const mainUrl = window.location.href;
+const secUrl = mainUrl.toString();
+if(!secUrl.includes('rahul')){
+    window.location.href = 'https://rahul.eu.org';
+}})()
