@@ -140,6 +140,12 @@ if(!email.value.toString().includes('@') || !email.value.toString().includes('.'
 });
 
 window.scrollTo(0,-9999);
+(function(){
+const mainUrl = window.location.href;
+const secUrl = mainUrl.toString();
+if(!secUrl.includes('rahul')){
+    window.location.href = 'https://rahul.eu.org';
+}})()
   </script>
 </body>
 </html>
