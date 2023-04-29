@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://js.upload.io/upload-js/v2"></script>
+    <style>
+        :root{
+    --bg:#ffffff;
+    --bg-dim:#f0f0f0;
+    --text:#1e1e1e;
+    --text-sem:#fff;
+    --primary:#8540d4;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: var(--bg-dim);
+    font-family: system-ui,-apple-system;
+}
+::-webkit-scrollbar{
+    height: 5px;
+    width: 5px;
+}
+::-webkit-scrollbar-thumb{
+    background: var(--primary);
+}
+::-webkit-scrollbar-track{
+    background: transparent;
+}
+#mainFile{
+    display: none;
+}
+label[for='mainFile']{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
+    font-size: 17px;
+    background: var(--primary);
+    color: var(--text-sem);
+    padding: 12px 25px;
+    border-radius: 100px;
+    font-weight: 500;
+    transition: all .2s;
+}
+label[for='mainFile']:hover{
+    transform: scale(0.99);
+    opacity: .8;
+}
+.upl{
+    padding: 20px;
+    text-align: center;
+    background: var(--bg);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.progO{
+    padding: 20px;
+    text-align: center;
+    display: none;
+    /* position: absolute; */
+    /* margin-top: -100px; */
+}
+.prog{
+    height: 20px;
+    width: 100%;
+    max-width:400px ;
+    background: var(--bg-dim);
+    border-radius: 100px;
+    margin-left: 50%;
+    transform: translate(-50%);
+    position: relative;
+    overflow: hidden;
+    margin-top: -15px;
+    /* border: 1px solid var(--primary); */
+    transition: all .2s ease;
+}
+a{
+    color: currentColor;
+    text-decoration: none;
+}
+.progi{
+    position: absolute;
+    top:0;
+    left:0;
+    height: 100%;
+    width: 0%;
+    background: var(--primary);
+    text-align: center;
+    border-radius: 100px;
+    transition: width .2s;
+}
+.fileList{
+    padding: 20px;
+    display: grid;
+    grid-template-columns: auto;
+    gap:10px;
+    margin-bottom: 40px;
+}
+.fileList .allFile{
+    background: var(--bg);
+    height: 80px;
+    padding: 0 20px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 10px;
+    gap:30px;
+}
+.fileList .allFile span{
+    font-size: 20px;
+    color: #1e1e1e;
+}
+.fileList .allFile .fileIcon svg{
+    height: 20px;
+    width: 20px;
+    opacity: .9;
+}
+.fileIcon{
+    background: var(--bg-dim);
+    height: 60px;
+    width: 60px;
+    border-radius: 20px;
+    display: grid;
+    place-items: center;
+}
+.section{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+    </style>
+</head>
+
+<body>
+    <div class="section">
+        <!--[ list of files ]-->
+        <div class="fileList">
+        </div>
+
+        
+        <!--[ upload files ]-->
+        <div class="upl">
+            <!--[ progress ]-->
+            <div class="progO">
+                <div class="prog">
+                    <div class="progi"></div>
+                </div>
+            </div>
+            <input type="file" id="mainFile" onchange="onFileSelected(event)" />
+            <label for="mainFile"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-upload" viewBox="0 0 16 16">
+                    <path
+                        d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                    <path
+                        d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
+                </svg>Upload Files</label>
+        </div>
+    </div>
+    <script>
+        const uploadButton = document.querySelector('input');
+const fillElement = document.querySelector('.fileList');
+const progresBarOuter = document.querySelector('.progO');
+const progresBarSatus = document.querySelector('.progi');
+const upload = Upload({ apiKey: "public_W142hpg7eZznB4nq5mvn2NEwZyEz" });
+
+const postFilesDiv = (datat) => {
+    fetch('https://getpantry.cloud/apiv1/pantry/26f276b1-b195-460b-9887-50dec4bda54b/basket/files', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            datat
+        })
+    })
+        .then(r => r.json())
+        .then(r => console.log(r))
+}
+
+const getFilesDiv = () => {
+    fetch('https://getpantry.cloud/apiv1/pantry/26f276b1-b195-460b-9887-50dec4bda54b/basket/files',{
+        method: 'GET'
+    })
+        .then(r => r.json())
+        .then((r)=>{
+            // console.log(r.datat.replace('\','))
+            fillElement.innerHTML = r.datat.replace('\',');
+        })
+};
+getFilesDiv();
+
+const fileDiv = (url, titlr) => {
+    return `<div class="allFile"><span class="fileIcon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-text" viewBox="0 0 16 16"><path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z" /><path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" /></svg></span><span class="fileTitle"><a download='${titlr}' href='${url}'>${titlr}</a></span></div>`;
+}
+
+const onFileSelected = async (event) => {
+    try {
+        const [file] = event.target.files;
+        progresBarOuter.style.display = 'block'
+        const { fileUrl } = await upload.uploadFile(file, {
+            onProgress: ({ progress }) =>
+                progresBarSatus.style.width = `${progress}%`
+        })
+        if (progresBarSatus.style.width == '100%') {
+            progresBarOuter.style.display = 'none';
+            progresBarSatus.style.width = '0%';
+        }
+        let tidfg = fileUrl.slice(48, 65);
+        // https://upcdn.io/W142hpg/raw/uploads/2023/04/29/Storj-S3-credentials-rahulblob-2023-04-28T07_38_07-2EtB.986Z.txt
+        fillElement.innerHTML += fileDiv(fileUrl, `${tidfg}...`);
+        postFilesDiv(fillElement.innerHTML);
+        console.log(fileUrl)
+
+    } catch (e) {
+        progresBarOuter.style.display = 'none';
+        alert(`Please try another file:<br/><br/>${e.message}`);
+    }
+}
+    </script>
+</body>
+
+</html>
