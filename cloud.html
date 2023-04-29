@@ -8,7 +8,7 @@
     <title>Cloud</title>
     <script src="https://js.upload.io/upload-js/v2"></script>
     <style>
-        :root{
+    :root{
     --bg:#ffffff;
     --bg-dim:#f0f0f0;
     --text:#1e1e1e;
@@ -57,7 +57,7 @@ label[for='mainFile']:hover{
     padding: 20px;
     text-align: center;
     background: var(--bg);
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
@@ -103,7 +103,7 @@ a{
     display: grid;
     grid-template-columns: auto;
     gap:10px;
-    margin-bottom: 40px;
+    margin-bottom: 150px;
 }
 .fileList .allFile{
     background: var(--bg);
@@ -130,11 +130,6 @@ a{
     border-radius: 20px;
     display: grid;
     place-items: center;
-}
-.section{
-    position: absolute;
-    height: 100%;
-    width: 100%;
 }
     </style>
 </head>
